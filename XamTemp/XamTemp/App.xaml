@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="XamTemp.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <Color x:Key="PrimaryColor">#607D8B</Color>
+        <Color x:Key="PrimaryDarkColor">#34515e</Color>
+        <Color x:Key="PrimaryLightColor">#8eacbb</Color>
+        <Color x:Key="PrimaryAccentColor">#fdd835</Color>
+        <Color x:Key="PrimaryTextColor">#000000</Color>
+        <Color x:Key="PrimaryLightAccentColor">#ffff6b</Color>
+        <Color x:Key="PrimaryAccentDarkColor">#c6a700</Color>
+        <Color x:Key="PrimaryyAccentTextColor">#000000</Color>
+
+        <!--  Implicit styles  -->
+        <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+        </Style>
+    </Application.Resources>
+</Application>

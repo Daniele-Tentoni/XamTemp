@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamTemp.Views.ReportsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:md="clr-namespace:XamTemp.Helpers"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:viewModel="clr-namespace:XamTemp.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModel:ReportsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddTemperatureCommand}" Text="{x:Static md:MaterialDesignIcons.Add}" />
+        <ToolbarItem
+            Command="{Binding ResetDataCommand}"
+            Order="Secondary"
+            Text="Reset" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="Medium" Text="Average temperature" />
+            <microcharts:ChartView
+                x:Name="chartView"
+                BackgroundColor="{StaticResource PrimaryLightColor}"
+                Chart="{Binding Chart}"
+                HeightRequest="150" />
+            <CollectionView
+                x:Name="reportsCollectionView"
+                IsGrouped="True"
+                ItemsSource="{Binding Reports}">
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label FontSize="Title" Text="{Binding Date, Converter={StaticResource DateTimeOffsetConverter}}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem
+                                        BackgroundColor="{StaticResource PrimaryAccentDarkColor}"
+                                        Command="{Binding Source={x:Reference reportsCollectionView}, Path=BindingContext.SentDataCommand}"
+                                        CommandParameter="{Binding}"
+                                        Text="{x:Static md:MaterialDesignIcons.Send}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem
+                                        BackgroundColor="{StaticResource PrimaryAccentDarkColor}"
+                                        Command="{Binding Source={x:Reference reportsCollectionView}, Path=BindingContext.RemoveReportCommand}"
+                                        CommandParameter="{Binding}"
+                                        Text="{x:Static md:MaterialDesignIcons.Delete}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout Padding="8" Spacing="8">
+                                <Label FontSize="Medium" Text="{Binding Temperature, StringFormat='Temperature: {0}'}" />
+                                <Label FontSize="Medium" Text="{Binding Saturation, StringFormat='Saturation: {0}'}" />
+                                <Label FontSize="Small" Text="{Binding CreatedAt, Converter={StaticResource DateTimeOffsetConverter}, StringFormat='Registered at: {0}'}" />
+                                <Label
+                                    FontSize="Small"
+                                    IsVisible="{Binding Sent}"
+                                    Text="You have to send this report to your doctor" />
+                            </StackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

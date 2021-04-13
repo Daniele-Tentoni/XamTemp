@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamTemp.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:XamTemp.ViewModels"
+    Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModel:AboutViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Xam Temperature! Use this application to store your measurements of body temperature and blood oxygen saturation before communicate them to your doctor. Swipe on left to mark a report as communicated."
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
