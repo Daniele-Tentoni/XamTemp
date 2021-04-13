@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:md="clr-namespace:XamTemp.Helpers"
-    xmlns:views="clr-namespace:XamTemp.Views">
+    xmlns:views="clr-namespace:XamTemp.Views"
+    Visual="Material">
 
     <Shell.Resources>
         <!--  Style Shell elements  -->

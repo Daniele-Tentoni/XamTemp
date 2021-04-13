@@ -3,8 +3,10 @@
     x:Class="XamTemp.Views.AboutPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:md="clr-namespace:XamTemp.Helpers"
     xmlns:viewModel="clr-namespace:XamTemp.ViewModels"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+    Visual="Material">
     <ContentPage.BindingContext>
         <viewModel:AboutViewModel />
     </ContentPage.BindingContext>
@@ -13,6 +15,27 @@
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Welcome to Xam Temperature! Use this application to store your measurements of body temperature and blood oxygen saturation before communicate them to your doctor. Swipe on left to mark a report as communicated."
+                VerticalOptions="CenterAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Ho creato questa applicazione mentre ero in isolamento perché positivo al Covid.                 Riconosco pienamente la piena pienezza di inutilità di questo progetto, l'ho fatto solo per provare qualche funzionalità di Xamarin mentre passavo le serate.                  Se vorresti farmi sapere un tuo parere, scrivimi a daniele.tentoni.1996@gmail.com o apri una issue su Github"
+                VerticalOptions="CenterAndExpand" />
+            <Button
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="https://github.com/Daniele-Tentoni/XamTemp"
+                Text="Github">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.BugReport}" />
+                </Button.ImageSource>
+            </Button>
+            <Button Command="{Binding SendEmailButton}" Text="Send feedback">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.Feedback}" />
+                </Button.ImageSource>
+            </Button>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Daniele Tentoni, @2021"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>

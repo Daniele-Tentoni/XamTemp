@@ -4,15 +4,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:md="clr-namespace:XamTemp.Helpers"
-    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     xmlns:viewModel="clr-namespace:XamTemp.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+    Visual="Material">
     <ContentPage.BindingContext>
         <viewModel:ReportsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding AddTemperatureCommand}" Text="{x:Static md:MaterialDesignIcons.Add}" />
+        <ToolbarItem Command="{Binding AddTemperatureCommand}" Text="Add">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.Add}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
         <ToolbarItem
             Command="{Binding ResetDataCommand}"
             Order="Secondary"
@@ -25,12 +29,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label FontSize="Medium" Text="Average temperature" />
-            <microcharts:ChartView
-                x:Name="chartView"
-                BackgroundColor="{StaticResource PrimaryLightColor}"
-                Chart="{Binding Chart}"
-                HeightRequest="150" />
             <CollectionView
                 x:Name="reportsCollectionView"
                 IsGrouped="True"
@@ -49,7 +47,11 @@
                                         BackgroundColor="{StaticResource PrimaryAccentDarkColor}"
                                         Command="{Binding Source={x:Reference reportsCollectionView}, Path=BindingContext.SentDataCommand}"
                                         CommandParameter="{Binding}"
-                                        Text="{x:Static md:MaterialDesignIcons.Send}" />
+                                        Text="Send">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.Send}" />
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <SwipeView.RightItems>
@@ -58,7 +60,11 @@
                                         BackgroundColor="{StaticResource PrimaryAccentDarkColor}"
                                         Command="{Binding Source={x:Reference reportsCollectionView}, Path=BindingContext.RemoveReportCommand}"
                                         CommandParameter="{Binding}"
-                                        Text="{x:Static md:MaterialDesignIcons.Delete}" />
+                                        Text="Delete">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.Delete}" />
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
                             <StackLayout Padding="8" Spacing="8">
