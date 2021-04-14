@@ -12,13 +12,14 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <Label FontSize="Title" Text="Xam Temperature" />
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Welcome to Xam Temperature! Use this application to store your measurements of body temperature and blood oxygen saturation before communicate them to your doctor. Swipe on left to mark a report as communicated."
                 VerticalOptions="CenterAndExpand" />
             <Label
                 HorizontalOptions="CenterAndExpand"
-                Text="Ho creato questa applicazione mentre ero in isolamento perché positivo al Covid.                 Riconosco pienamente la piena pienezza di inutilità di questo progetto, l'ho fatto solo per provare qualche funzionalità di Xamarin mentre passavo le serate.                  Se vorresti farmi sapere un tuo parere, scrivimi a daniele.tentoni.1996@gmail.com o apri una issue su Github"
+                Text="I created this application while I was in isolation because Covid-positive. I fully acknowledge the full fullness of uselessness of this project, I did it just to try out some Xamarin features at evenings. If you would like to let me know your opinion, write me at daniele.tentoni.1996@gmail.com or open an issue on Github."
                 VerticalOptions="CenterAndExpand" />
             <Button
                 Command="{Binding OpenUrlCommand}"

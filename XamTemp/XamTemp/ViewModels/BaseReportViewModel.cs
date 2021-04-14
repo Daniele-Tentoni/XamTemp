@@ -13,7 +13,7 @@
         public BaseReportViewModel()
         {
             service = DependencyService.Get<ReportService>();
-            ResetDataCommand = new Command(async () => await ExecuteResetData());
+            ResetDataCommand = new Command(async () => await ExecuteResetData().ConfigureAwait(false));
         }
         public Command ResetDataCommand { get; set; }
 

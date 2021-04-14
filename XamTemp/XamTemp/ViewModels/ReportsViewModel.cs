@@ -19,10 +19,10 @@
         {
             Title = "Reports";
             Reports = new ObservableCollection<ReportGroup>();
-            LoadTemperaturesCommand = new Command(async () => await ExecuteLoadTemperature());
-            AddTemperatureCommand = new Command(async () => await ExecuteAddTemperature());
-            RemoveReportCommand = new Command<Report>(async (report) => await ExecuteDeleteTemperature(report));
-            SentDataCommand = new Command<Report>(async (report) => await ExecuteSentData(report));
+            LoadTemperaturesCommand = new Command(async () => await ExecuteLoadTemperature().ConfigureAwait(false));
+            AddTemperatureCommand = new Command(async () => await ExecuteAddTemperature().ConfigureAwait(false));
+            RemoveReportCommand = new Command<Report>(async (report) => await ExecuteDeleteTemperature(report).ConfigureAwait(false));
+            SentDataCommand = new Command<Report>(async (report) => await ExecuteSentData(report).ConfigureAwait(false));
 
             MessagingCenter.Subscribe<BaseReportViewModel>(this, App.DataReset, sender =>
             {
