@@ -37,7 +37,7 @@
 
         private async Task ExecuteLoadTemperature()
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {
@@ -58,7 +58,7 @@
 
         private async Task ExecuteAddTemperature()
         {
-            if (this.IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {
@@ -71,6 +71,7 @@
                 var added = await service.AddReportAsync(new Report
                 {
                     Saturation = intSaturation,
+                    Sent = false,
                     Temperature = doubleTemperature
                 });
                 AddReport(added);
@@ -114,7 +115,7 @@
 
         private async Task ExecuteDeleteTemperature(Report report)
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {
@@ -125,7 +126,7 @@
                         "Are you sure to delete this report? (You will not be able to retreive it)",
                         "Yes, I'm sure!",
                         "No, don't do it."));
-                if (!response) return;
+                if (!response) { return; }
 
                 // Find and remove report.
                 var group = Reports.SingleOrDefault(a => a.Date.Year.Equals(report.CreatedAt.Year) && a.Date.DayOfYear.Equals(report.CreatedAt.DayOfYear));
@@ -153,7 +154,7 @@
 
         private async Task ExecuteSentData(Report report)
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {

@@ -32,11 +32,11 @@
                 LabelTextSize = 20,
                 LabelColor = SKColor.Parse("#fdd835")
             };
-            LoadChartsCommand = new Command(async () => await ExecuteLoadCharts());
+            LoadChartsCommand = new Command(async () => await ExecuteLoadCharts().ConfigureAwait(false));
         }
         private async Task ExecuteLoadCharts()
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {

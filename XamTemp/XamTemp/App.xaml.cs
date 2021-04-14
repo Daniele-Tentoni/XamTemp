@@ -18,14 +18,18 @@
 
         protected override void OnStart()
         {
+            // Does nothing at the moment.
+            // TODO: Add notifications.
         }
 
         protected override void OnSleep()
         {
+            // Does nothing at the moment.
         }
 
         protected override void OnResume()
         {
+            // Does nothing at the moment.
         }
     }
 }

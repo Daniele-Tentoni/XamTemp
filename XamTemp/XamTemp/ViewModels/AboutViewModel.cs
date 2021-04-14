@@ -13,17 +13,17 @@
         public AboutViewModel()
         {
             Title = "About";
-            OpenUrlCommand = new Command<string>(async (url) => await ExecuteOpenUrl(url));
-            SendEmailButton = new Command(async () => await ExecuteSendEmail());
+            OpenUrlCommand = new Command<string>(async (url) => await ExecuteOpenUrl(url).ConfigureAwait(false));
+            SendEmailButton = new Command(async () => await ExecuteSendEmail().ConfigureAwait(false));
         }
 
         public Command OpenUrlCommand { get; set; }
-        
+
         public Command SendEmailButton { get; set; }
-        
+
         private async Task ExecuteOpenUrl(string url)
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {
@@ -45,14 +45,14 @@
 
         private async Task ExecuteSendEmail()
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {
                 var message = new EmailMessage
                 {
                     Subject = "Feedback for XamTemp",
-                    To = new List<string>() { "daniele.tentoni.1996@gmail.com" }
+                    To = new List<string> { "daniele.tentoni.1996@gmail.com" }
                 };
                 await Email.ComposeAsync(message);
             }

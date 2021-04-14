@@ -19,7 +19,7 @@
 
         private async Task ExecuteResetData()
         {
-            if (IsBusy) return;
+            if (IsBusy) { return; }
             IsBusy = true;
             try
             {

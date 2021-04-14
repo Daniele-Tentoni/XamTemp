@@ -15,7 +15,7 @@
         /// <returns>List of reports.</returns>
         public async Task<IEnumerable<Report>> GetReportsAsync()
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             var reports = realm.All<Report>();
             return reports.OrderByDescending(o => o.CreatedAt);
         }
@@ -27,7 +27,7 @@
         /// <returns>Report.</returns>
         public async Task<Report> GetReportByIdAsync(ObjectId id)
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             var report = realm.Find<Report>(id);
             return report;
         }
@@ -39,7 +39,7 @@
         /// <returns>Report added. Use it to retreive the current object id.</returns>
         public async Task<Report> AddReportAsync(Report report)
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             Report added = null;
             realm.Write(() => added = realm.Add(report));
             return added;
@@ -47,7 +47,7 @@
 
         public async Task<Report> SwitchSentReportAsync(Report report)
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             // realm.Write(() => report.Sent = !report.Sent);
             realm.Write(() => report.Sent = !report.Sent);
             return report;
@@ -60,7 +60,7 @@
         /// <returns>Task executed.</returns>
         public async Task<Report> ModifyReportAsync(Report report)
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             Report added = null;
             realm.Write(() => added = realm.Add(report, true));
             return added;
@@ -73,7 +73,7 @@
         /// <returns>Task executed.</returns>
         public async Task DeleteReportAsync(ObjectId id)
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             var elem = realm.Find<Report>(id);
             realm.Write(() => realm.Remove(elem));
         }
@@ -84,7 +84,7 @@
         /// <returns>Task executed.</returns>
         public async Task ResetData()
         {
-            var realm = await Realm.GetInstanceAsync(config);
+            var realm = await Realm.GetInstanceAsync(config).ConfigureAwait(false);
             realm.Write(() => realm.RemoveAll<Report>());
         }
 

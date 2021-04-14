@@ -12,7 +12,7 @@
         public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
         public double Temperature { get; set; } = 36;
         public int Saturation { get; set; } = 100;
-        public bool Sent { get; set; } = false;
+        public bool Sent { get; set; }
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
     }
 
