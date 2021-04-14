@@ -28,6 +28,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <xct:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter" />
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -38,7 +39,10 @@
                 ItemsSource="{Binding Reports}">
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Label FontSize="Title" Text="{Binding Date, Converter={StaticResource DateTimeOffsetConverter}}" />
+                        <Label
+                            FontSize="Title"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{Binding Date, Converter={StaticResource DateTimeOffsetConverter}, StringFormat='d/M/YYYY'}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
                 <CollectionView.ItemTemplate>
@@ -76,7 +80,7 @@
                                 <Label FontSize="Small" Text="{Binding CreatedAt, Converter={StaticResource DateTimeOffsetConverter}, StringFormat='Registered at: {0}'}" />
                                 <Label
                                     FontSize="Small"
-                                    IsVisible="{Binding Sent}"
+                                    IsVisible="{Binding Sent, Converter={StaticResource InvertedBoolConverter}}"
                                     Text="You have to send this report to your doctor" />
                             </StackLayout>
                         </SwipeView>

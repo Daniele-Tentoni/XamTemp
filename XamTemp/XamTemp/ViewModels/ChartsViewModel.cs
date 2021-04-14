@@ -78,14 +78,14 @@
         }
         private SKColor ConvertTemperatureToColor(double temperature)
         {
-            if (temperature > 37.5 || temperature < 32) return red;
-            if (temperature > 37 || temperature < 35) return yellow;
+            if (temperature > 37.5 || temperature < 32) { return red; }
+            if (temperature > 37 || temperature < 35) { return yellow; }
             return green;
         }
         private SKColor ConvertSaturationToColor(double saturation)
         {
-            if (saturation > 95) return green;
-            if (saturation > 90) return yellow;
+            if (saturation > 95) { return green; }
+            if (saturation > 90) { return yellow; }
             return red;
         }
 

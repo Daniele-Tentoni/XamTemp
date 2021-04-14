@@ -11,13 +11,15 @@
         <viewModel:AboutViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="8" Spacing="8">
             <Label FontSize="Title" Text="Xam Temperature" />
             <Label
+                FontSize="Medium"
                 HorizontalOptions="CenterAndExpand"
                 Text="Welcome to Xam Temperature! Use this application to store your measurements of body temperature and blood oxygen saturation before communicate them to your doctor. Swipe on left to mark a report as communicated."
                 VerticalOptions="CenterAndExpand" />
             <Label
+                FontSize="Medium"
                 HorizontalOptions="CenterAndExpand"
                 Text="I created this application while I was in isolation because Covid-positive. I fully acknowledge the full fullness of uselessness of this project, I did it just to try out some Xamarin features at evenings. If you would like to let me know your opinion, write me at daniele.tentoni.1996@gmail.com or open an issue on Github."
                 VerticalOptions="CenterAndExpand" />
@@ -35,6 +37,7 @@
                 </Button.ImageSource>
             </Button>
             <Label
+                FontSize="Small"
                 HorizontalOptions="CenterAndExpand"
                 Text="Daniele Tentoni, @2021"
                 VerticalOptions="CenterAndExpand" />
