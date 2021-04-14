@@ -3,6 +3,7 @@
     x:Class="XamTemp.Views.ReportsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:XamTemp.Helpers"
     xmlns:md="clr-namespace:XamTemp.Helpers"
     xmlns:viewModel="clr-namespace:XamTemp.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -29,6 +30,7 @@
         <ResourceDictionary>
             <xct:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter" />
             <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <converters:DateHeaderConverter x:Key="DateHeaderConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -39,10 +41,9 @@
                 ItemsSource="{Binding Reports}">
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Label
-                            FontSize="Title"
-                            HorizontalOptions="CenterAndExpand"
-                            Text="{Binding Date, Converter={StaticResource DateTimeOffsetConverter}, StringFormat='d/M/YYYY'}" />
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label FontSize="Title" Text="{Binding Date, Converter={StaticResource DateHeaderConverter}, StringFormat='Day: {0}'}" />
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
                 <CollectionView.ItemTemplate>

@@ -2,7 +2,9 @@
 {
     using Microcharts;
     using SkiaSharp;
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using Xamarin.Forms;
@@ -63,16 +65,26 @@
                         Color = ConvertSaturationToColor(saturation)
                     });
                 }
-                temperatures = temperatures.OrderByDescending(o => o.Label).ToList();
-                TemperaturesChart.Entries = temperatures;
-                TemperaturesChart.MinValue = temperatures.Min(m => m.Value);
-                TemperaturesChart.MaxValue = temperatures.Max(m => m.Value);
-                OnPropertyChanged(nameof(TemperaturesChart));
-                saturations = saturations.OrderByDescending(o => o.Label).ToList();
-                SaturationsChart.Entries = saturations;
-                SaturationsChart.MinValue = saturations.Min(m => m.Value);
-                SaturationsChart.MaxValue = saturations.Max(m => m.Value);
-                OnPropertyChanged(nameof(SaturationsChart));
+                if (temperatures.Any())
+                {
+                    temperatures = temperatures.OrderByDescending(o => o.Label).ToList();
+                    TemperaturesChart.Entries = temperatures;
+                    TemperaturesChart.MinValue = temperatures.Min(m => m.Value);
+                    TemperaturesChart.MaxValue = temperatures.Max(m => m.Value);
+                    OnPropertyChanged(nameof(TemperaturesChart));
+                }
+                if (saturations.Any())
+                {
+                    saturations = saturations.OrderByDescending(o => o.Label).ToList();
+                    SaturationsChart.Entries = saturations;
+                    SaturationsChart.MinValue = saturations.Min(m => m.Value);
+                    SaturationsChart.MaxValue = saturations.Max(m => m.Value);
+                    OnPropertyChanged(nameof(SaturationsChart));
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Exception thrown from Chart loader: {e.Message}");
             }
             finally { IsBusy = false; }
         }
