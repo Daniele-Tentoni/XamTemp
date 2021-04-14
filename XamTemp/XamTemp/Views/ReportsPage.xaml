@@ -12,7 +12,10 @@
         <viewModel:ReportsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding AddTemperatureCommand}" Text="Add">
+        <ToolbarItem
+            AutomationId="AddTemperatureToolbarItem"
+            Command="{Binding AddTemperatureCommand}"
+            Text="Add">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="Material" Glyph="{x:Static md:MaterialDesignIcons.Add}" />
             </ToolbarItem.IconImageSource>

@@ -34,9 +34,10 @@
         public Command AddTemperatureCommand { get; set; }
         public Command RemoveReportCommand { get; set; }
         public Command SentDataCommand { get; set; }
+
         private async Task ExecuteLoadTemperature()
         {
-            if (this.IsBusy) return;
+            if (IsBusy) return;
             IsBusy = true;
             try
             {
@@ -54,6 +55,7 @@
                 IsBusy = false;
             }
         }
+
         private async Task ExecuteAddTemperature()
         {
             if (this.IsBusy) return;
@@ -88,6 +90,10 @@
             }
         }
 
+        /// <summary>
+        /// Add a report to the reports collection. Remeber to run OnPropertyChanged after this or those executions.
+        /// </summary>
+        /// <param name="report">Report to add.</param>
         private void AddReport(Report report)
         {
             var reportGroup = Reports.SingleOrDefault(s => s.Date.Year.Equals(report.CreatedAt.Year) && s.Date.DayOfYear.Equals(report.CreatedAt.DayOfYear));
@@ -101,7 +107,8 @@
                 {
                     report
                 };
-                Reports.Add(new ReportGroup(report.CreatedAt, newList));
+                // Insert the item as first item, since it's the last added.
+                Reports.Insert(0, new ReportGroup(report.CreatedAt, newList));
             }
         }
 
