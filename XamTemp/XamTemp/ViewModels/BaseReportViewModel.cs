@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Xamarin.Forms;
+    using XamTemp.Resources.Strings;
     using XamTemp.Services;
 
     class BaseReportViewModel : BaseViewModel
@@ -25,10 +26,10 @@
             {
                 var response = await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Reset",
-                        "Are you sure to reset all report data and restore the initial setup of the applicazion?",
-                        "Yes, reset data!",
-                        "No, don't reset."));
+                        AppResources.Reset,
+                        AppResources.ResetConfirmationMessage,
+                        AppResources.ResetYes,
+                        AppResources.ResetNo));
                 if (response)
                 {
                     await service.ResetData();
@@ -38,12 +39,13 @@
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"Exception thrown resetting data: {e.Message}");
+                var message = string.Format(AppResources.ExceptionMessageReportReset, e.Message);
+                Debug.WriteLine(message);
                 await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Error",
-                        $"Error while resetting data: {e.Message}",
-                        "Bad..."));
+                        AppResources.Error,
+                        message,
+                        AppResources.Bad));
             }
             finally
             {

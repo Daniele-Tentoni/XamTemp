@@ -1,6 +1,5 @@
 ﻿namespace XamTemp.ViewModels
 {
-    using Microcharts;
     using Realms.Exceptions;
     using System;
     using System.Collections.Generic;
@@ -10,6 +9,7 @@
     using System.Threading.Tasks;
     using Xamarin.Forms;
     using XamTemp.Models;
+    using XamTemp.Resources.Strings;
 
     class ReportsViewModel : BaseReportViewModel
     {
@@ -63,9 +63,9 @@
             try
             {
                 var temperature = await Device.InvokeOnMainThreadAsync(async () =>
-                await Application.Current.MainPage.DisplayPromptAsync("Temperature", "Input Temperature", "Confirm", "Cancel", "Temperature", keyboard: Keyboard.Numeric));
+                await Application.Current.MainPage.DisplayPromptAsync(AppResources.Temperature, AppResources.InputTemperature, AppResources.Ok, AppResources.Cancel, AppResources.Temperature, keyboard: Keyboard.Numeric));
                 var saturation = await Device.InvokeOnMainThreadAsync(async () =>
-                await Application.Current.MainPage.DisplayPromptAsync("Saturation", "Input your saturation", "Ok", "Cancel", "Saturation", keyboard: Keyboard.Numeric));
+                await Application.Current.MainPage.DisplayPromptAsync(AppResources.Saturation, AppResources.InputSaturation, AppResources.Ok, AppResources.Cancel, AppResources.Saturation, keyboard: Keyboard.Numeric));
                 var intSaturation = int.Parse(saturation);
                 var doubleTemperature = double.Parse(temperature);
                 var added = await service.AddReportAsync(new Report
@@ -78,12 +78,13 @@
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"Exception thrown deleting a report: {e.Message}");
+                var message = string.Format(AppResources.ExceptionMessageReportAdd, e.Message);
+                Debug.WriteLine(message);
                 await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Error",
-                        $"Error while adding data: {e.Message}",
-                        "Bad..."));
+                        AppResources.Error,
+                        message,
+                        AppResources.Bad));
             }
             finally
             {
@@ -122,10 +123,10 @@
                 // Ask consensus.
                 var response = await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Delete",
-                        "Are you sure to delete this report? (You will not be able to retreive it)",
-                        "Yes, I'm sure!",
-                        "No, don't do it."));
+                        AppResources.Delete,
+                        AppResources.DeleteConfirm,
+                        AppResources.Sure,
+                        AppResources.NotSure));
                 if (!response) { return; }
 
                 // Find and remove report.
@@ -139,12 +140,13 @@
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"Exception thrown deleting a report: {e.Message}");
+                var message = string.Format(AppResources.ExceptionMessageReportDelete, e.Message);
+                Debug.WriteLine(message);
                 await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Error",
-                        $"Error while resetting data: {e.Message}",
-                        "Bad..."));
+                        AppResources.Error,
+                        message,
+                        AppResources.Bad));
             }
             finally
             {
@@ -174,12 +176,13 @@
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"Exception thrown resetting data: {e.Message}");
+                var message = string.Format(AppResources.ExceptionMessageReportSend, e.Message);
+                Debug.WriteLine(message);
                 await Device.InvokeOnMainThreadAsync(
                     async () => await Application.Current.MainPage.DisplayAlert(
-                        "Error",
-                        $"Error while sending data: {e.Message}",
-                        "Bad..."));
+                        AppResources.Error,
+                        message,
+                        AppResources.Bad));
             }
             finally
             {

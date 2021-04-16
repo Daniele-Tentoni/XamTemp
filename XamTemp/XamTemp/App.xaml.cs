@@ -1,6 +1,8 @@
 ﻿namespace XamTemp
 {
+    using Xamarin.CommunityToolkit.Helpers;
     using Xamarin.Forms;
+    using XamTemp.Resources.Strings;
     using XamTemp.Services;
 
     public partial class App : Application
@@ -12,6 +14,9 @@
             InitializeComponent();
 
             DependencyService.Register<ReportService>();
+            LocalizationResourceManager.Current.PropertyChanged += (sender, e) => 
+            AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
 
             MainPage = new AppShell();
         }

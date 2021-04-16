@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Xamarin.CommunityToolkit.Helpers;
+    using XamTemp.Resources.Strings;
 
     class Report: RealmObject
     {
@@ -14,6 +16,8 @@
         public int Saturation { get; set; } = 100;
         public bool Sent { get; set; }
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+
+        public LocalizedString ReportToSend = new LocalizedString(() => AppResources.ReportToSend);
     }
 
     class ReportGroup: ObservableCollection<Report>

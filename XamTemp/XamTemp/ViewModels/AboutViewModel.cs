@@ -5,11 +5,22 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
+    using Xamarin.CommunityToolkit.Helpers;
     using Xamarin.Essentials;
     using Xamarin.Forms;
+    using XamTemp.Resources.Strings;
 
     class AboutViewModel : BaseViewModel
     {
+        public LocalizedString AppVersion { get; } = new LocalizedString(
+            () => string.Format(AppResources.Version, AppInfo.VersionString));
+
+        public LocalizedString AboutIntro { get; } = new LocalizedString(() => AppResources.AboutIntro);
+
+        public LocalizedString AboutBody { get; } = new LocalizedString(() => AppResources.AboutBody);
+
+        public LocalizedString SendFeedback { get; } = new LocalizedString(() => AppResources.SendFeedback);
+
         public AboutViewModel()
         {
             Title = "About";
@@ -51,14 +62,14 @@
             {
                 var message = new EmailMessage
                 {
-                    Subject = "Feedback for XamTemp",
+                    Subject = AppResources.FeedbackFor,
                     To = new List<string> { "daniele.tentoni.1996@gmail.com" }
                 };
                 await Email.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException)
             {
-                await Device.InvokeOnMainThreadAsync(async () => await Application.Current.MainPage.DisplayAlert("Unsupported feature", "Your device doesn't support email sending", "Bad..."));
+                await Device.InvokeOnMainThreadAsync(async () => await Application.Current.MainPage.DisplayAlert(AppResources.UnsupportedFeature, AppResources.UnsupportedEmail, AppResources.Bad));
             }
             finally
             {

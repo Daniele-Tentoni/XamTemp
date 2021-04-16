@@ -82,7 +82,7 @@
                                 <Label
                                     FontSize="Small"
                                     IsVisible="{Binding Sent, Converter={StaticResource InvertedBoolConverter}}"
-                                    Text="You have to send this report to your doctor" />
+                                    Text="{Binding ReportToSend.Localized}" />
                             </StackLayout>
                         </SwipeView>
                     </DataTemplate>
