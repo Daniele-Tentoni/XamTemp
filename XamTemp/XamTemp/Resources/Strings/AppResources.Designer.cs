@@ -187,6 +187,15 @@ namespace XamTemp.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Made with Xamarin.Forms.
+        /// </summary>
+        public static string MadeWith {
+            get {
+                return ResourceManager.GetString("MadeWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No, don&apos;t do it..
         /// </summary>
         public static string NotSure {

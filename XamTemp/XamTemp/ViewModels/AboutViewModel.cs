@@ -19,6 +19,8 @@
 
         public LocalizedString AboutBody { get; } = new LocalizedString(() => AppResources.AboutBody);
 
+        public LocalizedString MadeWith { get; } = new LocalizedString(() => AppResources.MadeWith);
+
         public LocalizedString SendFeedback { get; } = new LocalizedString(() => AppResources.SendFeedback);
 
         public AboutViewModel()

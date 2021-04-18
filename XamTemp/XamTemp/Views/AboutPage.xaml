@@ -42,6 +42,11 @@
                 HorizontalOptions="CenterAndExpand"
                 Text="Daniele Tentoni, @2021"
                 VerticalOptions="CenterAndExpand" />
+            <Label
+                FontSize="Small"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding MadeWith.Localized}"
+                VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

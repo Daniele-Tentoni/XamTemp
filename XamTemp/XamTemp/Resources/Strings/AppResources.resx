@@ -159,6 +159,9 @@
   <data name="InputTemperature" xml:space="preserve">
     <value>Input temperature</value>
   </data>
+  <data name="MadeWith" xml:space="preserve">
+    <value>Made with Xamarin.Forms</value>
+  </data>
   <data name="NotSure" xml:space="preserve">
     <value>No, don't do it.</value>
   </data>

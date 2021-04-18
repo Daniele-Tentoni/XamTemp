@@ -17,7 +17,7 @@
             Text="Reset" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Padding="8">
             <StackLayout Spacing="8">
                 <StackLayout Spacing="8">
                     <Label FontSize="Medium" Text="Average temperature" />
