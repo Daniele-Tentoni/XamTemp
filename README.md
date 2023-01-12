@@ -1,4 +1,7 @@
 # Xam Temperature
+
+This repository is archived, since I don't develop anymore with Xamarin due to Maui release.
+
 Take a shot of your body temperature and blood saturation. This application is not responsible for your data and can't substitute a doctor word. Sorry for bad English.
 
 I choose to use Bitrise for CI: [![Build Status](https://app.bitrise.io/app/8b0e5384a131a5ff/status.svg?token=0a_aPQx7QSYrGlxbyxEyVg&branch=main)](https://app.bitrise.io/app/8b0e5384a131a5ff).
